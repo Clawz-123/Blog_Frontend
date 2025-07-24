@@ -2,6 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { IoSearchOutline } from "react-icons/io5";
+import { FiArrowRight } from "react-icons/fi";
+
 
 const Home = () => {
     return (
@@ -25,6 +27,17 @@ const Home = () => {
                                 placeholder="Search articles..."
                                 className="outline-none w-full"
                             />
+                        </div>
+                    </div>
+                    {/* Explore Buttons */}
+                    <div className='flex justify-center'>
+                        <div className='flex justify-center mt-6 gap-4 px-4 py-2 text-sm w-[350px] '>
+                            <button className="w-full flex justify-between items-center  text-white bg-blue-700 hover:bg-blue-800  rounded-md px-4 py-2 transition font-medium transform hover:-translate-y-0.5 duration-200">
+                                Explore Articles <FiArrowRight />
+                            </button>
+                            <button className="w-full text-left text-black hover:bg-amber-600 hover:text-white rounded-md px-4 py-2 transition font-medium">
+                                Start Writing
+                            </button>
                         </div>
                     </div>
                 </div>

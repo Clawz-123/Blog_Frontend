@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiBookOpen, FiMenu, FiX } from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navigation = [
     { name: "Home", path: "/" },
@@ -30,13 +31,16 @@ const Header = () => {
                 {/* Desktop Navigation */}
                 <div className='hidden md:flex gap-8 text-gray-600 font-medium'>
                     {Navigation.map((nav) => (
-                        <Link
+                        <NavLink
                             key={nav.name}
                             to={nav.path}
-                            className="hover:text-blue-700 transition"
+                            className={({ isActive }) =>
+                                `transition ${isActive ? 'text-blue-700' : 'hover:text-blue-700'
+                                }`
+                            }
                         >
                             {nav.name}
-                        </Link>
+                        </NavLink>
                     ))}
                 </div>
 
@@ -55,14 +59,17 @@ const Header = () => {
             {menuOpen && (
                 <div className="md:hidden flex flex-col gap-4 px-6 pb-4 bg-white shadow-sm">
                     {Navigation.map((nav) => (
-                        <Link
+                        <NavLink
                             key={nav.name}
                             to={nav.path}
-                            className="text-gray-800 hover:text-blue-700 transition"
+                            className={({ isActive }) =>
+                                `transition ${isActive ? 'text-blue-700' : 'hover:text-blue-700'
+                                }`
+                            }
                             onClick={() => setMenuOpen(false)}
                         >
                             {nav.name}
-                        </Link>
+                        </NavLink>
                     ))}
                     <button className="w-full text-left text-black hover:bg-amber-600 hover:text-white rounded-md px-4 py-2 transition font-medium">
                         Login

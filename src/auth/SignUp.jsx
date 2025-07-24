@@ -3,6 +3,7 @@ import { FiBookOpen } from "react-icons/fi";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { validationSchema } from '../Validation/validationSchema';
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
 
 const SignupField = [
     { label: 'First Name', name: 'firstName', type: 'text', placeholder: 'Enter your first name' },
@@ -18,6 +19,7 @@ const initialValues = {
     email: "",
     password: "",
     confirmPassword: "",
+    rememberMe: false
 };
 
 const SignUp = () => {
@@ -25,8 +27,11 @@ const SignUp = () => {
         console.log('Form submitted:', values);
         actions.setSubmitting(false);
         actions.resetForm();
+        navigate('/login')
     };
 
+
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -102,7 +107,13 @@ const SignUp = () => {
                                 <ErrorMessage name={field.name} component="div" className="text-red-500 text-xs mt-1 min-h-[1rem]" />
                             </div>
                         ))}
-
+                        {/* Remember me checkbox */}
+                        <div className="flex items-center gap-2 text-sm text-gray-700 mt-1">
+                            <Field type="checkbox" name="rememberMe" id="rememberMe" className="w-4 h-4" />
+                            <label htmlFor="rememberMe" className="cursor-pointer select-none">
+                                Remember me
+                            </label>
+                        </div>
 
                         {/* Buttons */}
                         <div className='flex flex-col sm:flex-row gap-2 pt-2'>
@@ -114,6 +125,7 @@ const SignUp = () => {
                                 Sign Up
                             </button>
                             <button
+                                onClick={()=> navigate('/')}
                                 type="button"
                                 className="w-full border border-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white 
                            font-medium py-2 rounded-lg text-sm transition-all duration-200 focus:outline-none 
@@ -129,7 +141,9 @@ const SignUp = () => {
                 <div className="mt-4 text-center">
                     <p className="text-sm text-gray-600">
                         Already have an account?
-                        <span className="text-blue-600 hover:text-blue-800 cursor-pointer font-medium ml-1">
+                        <span 
+                        onClick={()=> navigate('/login')}
+                        className="text-blue-600 hover:text-blue-800 cursor-pointer font-medium ml-1">
                             Sign In
                         </span>
                     </p>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FiBookOpen, FiEye, FiEyeOff } from "react-icons/fi";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { validationSchema } from '../Validation/validationSchema';
+import { signInSchema } from '../Validation/validationSchema';
 
 const SignInField = [
     { label: 'Email Address', name: 'email', type: 'email', placeholder: 'Enter your email' },
@@ -39,7 +39,7 @@ const SignIn = () => {
                     <p className='text-gray-600 text-sm'>Log in to continue sharing your stories.</p>
                 </div>
 
-                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+                <Formik initialValues={initialValues} validationSchema={signInSchema} onSubmit={handleSubmit}>
                     <Form className='flex flex-col gap-3'>
                                               {SignInField.map((field) => (
                             <div key={field.name} className="flex flex-col relative">
@@ -106,4 +106,29 @@ const SignIn = () => {
                         </div>
                     </Form>
                 </Formik>
+                {/* Sign Up Link */}
+                <div className="mt-4 text-center">
+                    <p className="text-sm text-gray-600">
+                        Don’t have an account?
+                        <span
+                            onClick={() => navigate('/signup')}
+                            className="text-blue-600 hover:text-blue-800 cursor-pointer font-medium ml-1"
+                        >
+                            Sign Up
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-4 text-center">
+                <p className="text-xs text-gray-500">
+                    By signing in, you agree to our Terms of Service and Privacy Policy
+                </p>
+            </div>
+        </div>
+    );
+};
+
+export default SignIn;
 

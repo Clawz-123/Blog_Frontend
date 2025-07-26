@@ -10,6 +10,12 @@ export const signUpSchema = Yup.object({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Enter your confrmation passwork'),
-    rememberMe: Yup.boolean()
+  rememberMe: Yup.boolean()
+});
+
+export const signInSchema = Yup.object({
+  email: Yup.string().email('Please enter a valid email').required('Please enter your email'),
+  password: Yup.string().matches(passwordRegex, "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.").required('Please enter your password'),
+  rememberMe: Yup.boolean()
 });
 

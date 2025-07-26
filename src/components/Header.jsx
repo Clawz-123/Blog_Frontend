@@ -17,7 +17,9 @@ const Header = () => {
         <header className='w-full border-b border-gray-200'>
             <div className='flex justify-between items-center h-16 px-6 md:px-10'>
                 {/* Logo */}
-                <div className="flex items-center gap-2">
+                <div 
+                onClick={() => navigate("/")}
+                className="flex items-center gap-2 cursor-pointer">
                     <FiBookOpen className='text-3xl text-blue-700' />
                     <span className="font-bold text-xl">BlogHub</span>
                 </div>

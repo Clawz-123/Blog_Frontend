@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FiBookOpen } from "react-icons/fi";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { validationSchema } from '../Validation/validationSchema';
+import { signUpSchema } from '../Validation/validationSchema';
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom';
 
@@ -55,7 +55,7 @@ const SignUp = () => {
                 </div>
 
                 {/* Formik Form */}
-                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+                <Formik initialValues={initialValues} validationSchema={signUpSchema} onSubmit={handleSubmit}>
                     <Form className='flex flex-col gap-3'>
                         {SignupField.map((field) => (
                             <div key={field.name} className="flex flex-col relative">

@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 const passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$");
 
 // Validation schema
-export const validationSchema = Yup.object({
+export const signUpSchema = Yup.object({
   firstName: Yup.string().required('Please enter your firstname'),
   lastName: Yup.string().required('Please enter your lastname'),
   email: Yup.string().email('Invalid email').required('Please enter youe email'),

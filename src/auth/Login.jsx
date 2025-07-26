@@ -41,3 +41,40 @@ const SignIn = () => {
 
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                     <Form className='flex flex-col gap-3'>
+                                              {SignInField.map((field) => (
+                            <div key={field.name} className="flex flex-col relative">
+                                <label htmlFor={field.name} className="text-sm font-medium mb-1 text-gray-700">
+                                    {field.label}
+                                </label>
+
+                                {field.name === 'password' ? (
+                                    <>
+                                        <Field
+                                            id={field.name}
+                                            name={field.name}
+                                            type={showPassword ? 'text' : 'password'}
+                                            placeholder={field.placeholder}
+                                            className="border border-gray-300 rounded-lg px-3 py-2 pr-10 text-sm bg-gray-50 placeholder:text-gray-400 
+                        focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-blue-300 transition"
+                                        />
+                                        <div
+                                            className="absolute right-3 top-[38px] text-gray-500 cursor-pointer"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                                        </div>
+                                    </>
+                                ) : (
+                                    <Field
+                                        id={field.name}
+                                        name={field.name}
+                                        type={field.type}
+                                        placeholder={field.placeholder}
+                                        className="border border-gray-300 rounded-lg px-3 py-2 text-sm bg-gray-50 placeholder:text-gray-400 
+                        focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-blue-300 transition"
+                                    />
+                                )}
+                                <ErrorMessage name={field.name} component="div" className="text-red-500 text-xs mt-1 min-h-[1rem]" />
+                            </div>
+                        ))}
+
